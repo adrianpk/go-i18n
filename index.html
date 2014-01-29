@@ -63,9 +63,9 @@
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">i18n</span><span class="p">.</span><span class="nx">MustLoadTranslationFile</span><span class="p">(</span><span class="s">"path/to/fr-FR.all.json"</span><span class="p">)</span>
 
-    <span class="nx">localeIdFromUserland</span> <span class="p">=</span> <span class="s">"ar-AR"</span> <span class="c1">// e.g. from user preference, accept header, or language cookie</span>
-    <span class="nx">defaultLocale</span> <span class="p">=</span> <span class="s">"en-US"</span>        <span class="c1">// known valid locale</span>
-    <span class="nx">T</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">Tfunc</span><span class="p">(</span><span class="nx">localeIdFromUserland</span><span class="p">,</span> <span class="nx">defaultLocale</span><span class="p">)</span>
+    <span class="nx">localeFromUserland</span> <span class="p">=</span> <span class="s">"ar-AR"</span> <span class="c1">// e.g. from user preference, accept header, or language cookie</span>
+    <span class="nx">defaultLocale</span> <span class="p">=</span> <span class="s">"en-US"</span>      <span class="c1">// known valid locale</span>
+    <span class="nx">T</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">Tfunc</span><span class="p">(</span><span class="nx">localeFromUserland</span><span class="p">,</span> <span class="nx">defaultLocale</span><span class="p">)</span>
 
     <span class="c1">// Regular string with no substitutions.</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">T</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">))</span>
@@ -254,7 +254,17 @@ goi18n -help
       </footer>
     </div>
 
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-47572933-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
 
   </body>
 </html>
