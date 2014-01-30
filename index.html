@@ -121,7 +121,7 @@ It accepts multiple locale parameters so you can gracefully fallback to other lo
 
 <p>Sentences with multiple plural components can be supported with nesting.</p>
 
-<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread email in the past {{.Timeframe}}."</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread emails in the past {{.Timeframe}}."</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
     <span class="s">"Person"</span><span class="p">:</span>    <span class="s">"Bob"</span><span class="p">,</span>
     <span class="s">"Timeframe"</span><span class="p">:</span> <span class="nx">T</span><span class="p">(</span><span class="s">"{{.Count}} days"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
 <span class="p">})</span>
