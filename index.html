@@ -44,7 +44,7 @@
 
 <ul>
 <li>Implements <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">CLDR plural rules</a>.</li>
-<li>Uses <a href="http://golang.org/pkg/text/template/">text/template</a> for parameter substitution.</li>
+<li>Uses <a href="http://golang.org/pkg/text/template/">text/template</a> for strings with variables.</li>
 <li>Translation files are simple JSON.</li>
 </ul><h2>
 <a name="i18n-package" class="anchor" href="#i18n-package"><span class="octicon octicon-link"></span></a>i18n package</h2>
@@ -90,7 +90,7 @@ It accepts multiple locale parameters so you can gracefully fallback to other lo
 <h5>
 <a name="strings-with-variables" class="anchor" href="#strings-with-variables"><span class="octicon octicon-link"></span></a>Strings with variables</h5>
 
-<p>You can have variable substitutions in your string using <a href="http://golang.org/pkg/text/template/">text/template</a> syntax.</p>
+<p>You can have variables in your string using <a href="http://golang.org/pkg/text/template/">text/template</a> syntax.</p>
 
 <div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"Hello {{.Person}}"</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
     <span class="s">"Person"</span><span class="p">:</span> <span class="s">"Bob"</span><span class="p">,</span>
@@ -111,7 +111,7 @@ It accepts multiple locale parameters so you can gracefully fallback to other lo
 <div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"You have {{.Count}} unread emails"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
-<p>With variable substitutions:</p>
+<p>With variables:</p>
 
 <div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread emails"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
     <span class="s">"Person"</span><span class="p">:</span> <span class="s">"Bob"</span><span class="p">,</span>
