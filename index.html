@@ -69,8 +69,8 @@ The name of a translation file must contain a <a href="http://en.wikipedia.org/w
 <p>Tfunc returns a function that can lookup the translation of a string for that locale.
 It accepts multiple locale parameters so you can gracefully fallback to other locales.</p>
 
-<div class="highlight highlight-go"><pre><span class="nx">userLocale</span> <span class="p">=</span> <span class="s">"ar-AR"</span>       <span class="c1">// e.g. from user preference, accept header, or language cookie</span>
-<span class="nx">defaultLocale</span> <span class="p">=</span> <span class="s">"en-US"</span>    <span class="c1">// known valid locale</span>
+<div class="highlight highlight-go"><pre><span class="nx">userLocale</span> <span class="p">=</span> <span class="s">"ar-AR"</span>     <span class="c1">// user preference, accept header, language cookie</span>
+<span class="nx">defaultLocale</span> <span class="p">=</span> <span class="s">"en-US"</span>  <span class="c1">// known valid locale</span>
 <span class="nx">T</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">Tfunc</span><span class="p">(</span><span class="nx">userLocale</span><span class="p">,</span> <span class="nx">defaultLocale</span><span class="p">)</span>
 </pre></div>
 
@@ -94,7 +94,7 @@ It accepts multiple locale parameters so you can gracefully fallback to other lo
 
 <div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"Hello {{.Person}}"</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
     <span class="s">"Person"</span><span class="p">:</span> <span class="s">"Bob"</span><span class="p">,</span>
-<span class="p">}))</span>
+<span class="p">})</span>
 </pre></div>
 
 <h5>
@@ -113,17 +113,17 @@ It accepts multiple locale parameters so you can gracefully fallback to other lo
 
 <p>With variable substitutions:</p>
 
-<div class="highlight highlight-go"><pre><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread emails"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread emails"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
     <span class="s">"Person"</span><span class="p">:</span> <span class="s">"Bob"</span><span class="p">,</span>
-<span class="p">}))</span>
+<span class="p">})</span>
 </pre></div>
 
 <p>Sentences with multiple plural components can be supported with nesting.</p>
 
-<div class="highlight highlight-go"><pre><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread email in the past {{.Timeframe}}."</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread email in the past {{.Timeframe}}."</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
     <span class="s">"Person"</span><span class="p">:</span>    <span class="s">"Bob"</span><span class="p">,</span>
     <span class="s">"Timeframe"</span><span class="p">:</span> <span class="nx">T</span><span class="p">(</span><span class="s">"{{.Count}} days"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-<span class="p">}))</span>
+<span class="p">})</span>
 </pre></div>
 
 <p>A complete example is <a href="i18n/example_test.go">here</a>.</p>
