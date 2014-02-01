@@ -129,6 +129,13 @@ It accepts multiple locale parameters so you can gracefully fallback to other lo
 
 <p>A complete example is <a href="i18n/example_test.go">here</a>.</p>
 
+<h5>
+<a name="strings-in-templates" class="anchor" href="#strings-in-templates"><span class="octicon octicon-link"></span></a>Strings in templates</h5>
+
+<p>You can call the <code>.Funcs()</code> method on a <a href="http://golang.org/pkg/text/template/#Template.Funcs">text/template</a> or <a href="http://golang.org/pkg/html/template/#Template.Funcs">html/template</a> to register the translation function for usage inside of that template.</p>
+
+<p>A complete example is <a href="i18n/exampletemplate_test.go">here</a>.</p>
+
 <h2>
 <a name="goi18n-command" class="anchor" href="#goi18n-command"><span class="octicon octicon-link"></span></a>goi18n command</h2>
 
