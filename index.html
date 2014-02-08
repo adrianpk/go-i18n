@@ -46,6 +46,7 @@
 <li>Implements <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">CLDR plural rules</a>.</li>
 <li>Uses <a href="http://golang.org/pkg/text/template/">text/template</a> for strings with variables.</li>
 <li>Translation files are simple JSON.</li>
+<li>Is <a href="http://godoc.org/github.com/nicksnyder/go-i18n">documented</a> and <a href="https://travis-ci.org/nicksnyder/go-i18n">tested</a>.</li>
 </ul><h2>
 <a name="i18n-package" class="anchor" href="#i18n-package"><span class="octicon octicon-link"></span></a>i18n package</h2>
 
@@ -251,25 +252,29 @@ goi18n -help
 <ol>
 <li>Lookup the language's <a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">CLDR plural rules</a>.</li>
 <li>
-<p>Add the language to <a href="i18n/language.go">language.go</a>:</p>
+<p>Add the language to <a href="i18n/language/language.go">language.go</a>:</p>
 
-<div class="highlight highlight-go"><pre><span class="nx">RegisterLanguage</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">Language</span><span class="p">{</span>
-    <span class="nx">Code</span><span class="p">:</span>             <span class="s">"en"</span><span class="p">,</span>
-    <span class="nx">Name</span><span class="p">:</span>             <span class="s">"English"</span><span class="p">,</span>
-    <span class="nx">PluralCategories</span><span class="p">:</span> <span class="nx">newSet</span><span class="p">(</span><span class="nx">One</span><span class="p">,</span> <span class="nx">Other</span><span class="p">),</span>
-    <span class="nx">IntFunc</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int64</span><span class="p">)</span> <span class="nx">PluralCategory</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="nx">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">One</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nx">Other</span>
+<div class="highlight highlight-go"><pre><span class="kd">var</span> <span class="nx">languages</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">Language</span><span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="s">"en"</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">Language</span><span class="p">{</span>
+        <span class="nx">ID</span><span class="p">:</span>               <span class="s">"en"</span><span class="p">,</span>
+        <span class="nx">Name</span><span class="p">:</span>             <span class="s">"English"</span><span class="p">,</span>
+        <span class="nx">PluralCategories</span><span class="p">:</span> <span class="nx">newSet</span><span class="p">(</span><span class="nx">plural</span><span class="p">.</span><span class="nx">One</span><span class="p">,</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">Other</span><span class="p">),</span>
+        <span class="nx">IntFunc</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int64</span><span class="p">)</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">One</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">Other</span>
+        <span class="p">},</span>
+        <span class="nx">FloatFunc</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">f</span> <span class="kt">float64</span><span class="p">)</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">Other</span>
+        <span class="p">},</span>
     <span class="p">},</span>
-    <span class="nx">FloatFunc</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">f</span> <span class="kt">float64</span><span class="p">)</span> <span class="nx">PluralCategory</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">Other</span>
-    <span class="p">},</span>
-<span class="p">})</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
 </pre></div>
 </li>
-<li><p>Add a test to <a href="i18n/language_test.go">language_test.go</a></p></li>
+<li><p>Add a test to <a href="i18n/language/language_test.go">language_test.go</a></p></li>
 <li>Submit a pull request!</li>
 </ol><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
