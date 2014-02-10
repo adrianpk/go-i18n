@@ -46,7 +46,8 @@
 <li>Implements <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">CLDR plural rules</a>.</li>
 <li>Uses <a href="http://golang.org/pkg/text/template/">text/template</a> for strings with variables.</li>
 <li>Translation files are simple JSON.</li>
-<li>Is <a href="http://godoc.org/github.com/nicksnyder/go-i18n">documented</a> and <a href="https://travis-ci.org/nicksnyder/go-i18n">tested</a>.</li>
+<li>
+<a href="http://godoc.org/github.com/nicksnyder/go-i18n">Documented</a> and <a href="https://travis-ci.org/nicksnyder/go-i18n">tested</a>!</li>
 </ul><h2>
 <a name="i18n-package" class="anchor" href="#i18n-package"><span class="octicon octicon-link"></span></a>i18n package</h2>
 
@@ -111,6 +112,7 @@ It accepts multiple locale parameters so you can gracefully fallback to other lo
 </ul><p>The translation function handles <a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">all of this logic</a> for you.</p>
 
 <div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"You have {{.Count}} unread emails"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nx">T</span><span class="p">(</span><span class="s">"I am {{.Count}} meters tall."</span><span class="p">,</span> <span class="s">"1.7"</span><span class="p">)</span>
 </pre></div>
 
 <p>With variables:</p>
@@ -203,6 +205,13 @@ goi18n -help
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="p">{</span>
+    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"my_height_in_meters"</span><span class="p">,</span>
+    <span class="nt">"translation"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"one"</span><span class="p">:</span> <span class="s2">"I am {{.Count}} meter tall."</span><span class="p">,</span>
+      <span class="nt">"other"</span><span class="p">:</span> <span class="s2">"I am {{.Count}} meters tall."</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
     <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"person_greeting"</span><span class="p">,</span>
     <span class="nt">"translation"</span><span class="p">:</span> <span class="s2">"Hello {{.Person}}"</span>
   <span class="p">},</span>
@@ -239,13 +248,19 @@ goi18n -help
 
 <ul>
 <li>Arabic (<code>ar</code>)</li>
+<li>Catalan (<code>ca</code>)</li>
 <li>Chinese (Simplified) (<code>zh-Hans</code>)</li>
 <li>Chinese (Traditional) (<code>zh-Hant</code>)</li>
+<li>Czech (<code>cs</code>)</li>
+<li>Danish (<code>da</code>)</li>
+<li>Dutch (<code>nl</code>)</li>
 <li>English (<code>en</code>)</li>
 <li>French (<code>fr</code>)</li>
 <li>German (<code>de</code>)</li>
 <li>Italian (<code>it</code>)</li>
 <li>Japanese (<code>ja</code>)</li>
+<li>Portuguese (<code>pt</code>)</li>
+<li>Portuguese (Brazilian) (<code>pt-BR</code>)</li>
 <li>Spanish (<code>es</code>)</li>
 </ul><p>More languages are straightforward to add:</p>
 
