@@ -35,112 +35,23 @@
 <a name="go-i18n-" class="anchor" href="#go-i18n-"><span class="octicon octicon-link"></span></a>go-i18n <a href="http://travis-ci.org/nicksnyder/go-i18n"><img src="https://secure.travis-ci.org/nicksnyder/go-i18n.png?branch=master" alt="Build Status"></a>
 </h1>
 
-<p>go-i18n is a Go <a href="#i18n-package">package</a> and a <a href="#goi18n-command">command</a> that can be used to translate Go programs into multiple lanaguages.</p>
-
-<p>Requires Go 1.2.</p>
-
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+<p>go-i18n is a Go <a href="#i18n-package">package</a> and a <a href="#goi18n-command">command</a> that can be used to translate Go programs into multiple languages.</p>
 
 <ul>
-<li>Implements <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">CLDR plural rules</a>.</li>
-<li>Uses <a href="http://golang.org/pkg/text/template/">text/template</a> for strings with variables.</li>
+<li>Supports pluralized strings using <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">CLDR plural rules</a>.</li>
+<li>Supports strings with named variables using <a href="http://golang.org/pkg/text/template/">text/template</a> syntax.</li>
 <li>Translation files are simple JSON.</li>
 <li>
 <a href="http://godoc.org/github.com/nicksnyder/go-i18n">Documented</a> and <a href="https://travis-ci.org/nicksnyder/go-i18n">tested</a>!</li>
 </ul><h2>
-<a name="i18n-package" class="anchor" href="#i18n-package"><span class="octicon octicon-link"></span></a>i18n package</h2>
+<a name="package-i18n-" class="anchor" href="#package-i18n-"><span class="octicon octicon-link"></span></a>Package i18n <a href="http://godoc.org/github.com/nicksnyder/go-i18n/i18n"><img src="http://godoc.org/github.com/nicksnyder/go-i18n?status.png" alt="GoDoc"></a>
+</h2>
 
-<p>The i18n package provides runtime APIs for looking up translated strings.</p>
-
-<div class="highlight highlight-go"><pre><span class="kn">import</span> <span class="s">"github.com/nicksnyder/go-i18n/i18n"</span>
-</pre></div>
-
-<h5>
-<a name="loading-translations" class="anchor" href="#loading-translations"><span class="octicon octicon-link"></span></a>Loading translations</h5>
-
-<p>Load translation files during your program's initialization.
-The name of a translation file must contain a supported <a href="http://en.wikipedia.org/wiki/IETF_language_tag">language tag</a>.</p>
-
-<div class="highlight highlight-go"><pre><span class="nx">i18n</span><span class="p">.</span><span class="nx">MustLoadTranslationFile</span><span class="p">(</span><span class="s">"path/to/fr-FR.all.json"</span><span class="p">)</span>
-</pre></div>
-
-<h5>
-<a name="selecting-a-locale" class="anchor" href="#selecting-a-locale"><span class="octicon octicon-link"></span></a>Selecting a locale</h5>
-
-<p>Tfunc returns a function that can lookup the translation of a string for that locale.
-It accepts multiple locale parameters so you can gracefully fallback to other locales.</p>
-
-<div class="highlight highlight-go"><pre><span class="nx">userLocale</span> <span class="p">=</span> <span class="s">"ar-AR"</span>     <span class="c1">// user preference, accept header, language cookie</span>
-<span class="nx">defaultLocale</span> <span class="p">=</span> <span class="s">"en-US"</span>  <span class="c1">// known valid locale</span>
-<span class="nx">T</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">Tfunc</span><span class="p">(</span><span class="nx">userLocale</span><span class="p">,</span> <span class="nx">defaultLocale</span><span class="p">)</span>
-</pre></div>
-
-<h5>
-<a name="loading-a-string-translation" class="anchor" href="#loading-a-string-translation"><span class="octicon octicon-link"></span></a>Loading a string translation</h5>
-
-<p>Use the translation function to fetch the translation of a string.</p>
-
-<div class="highlight highlight-go"><pre><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">T</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">))</span>
-</pre></div>
-
-<p>Usually it is a good idea to identify strings by a generic id rather than the English translation, but the rest of this document will continue to use the English translation for readability.</p>
-
-<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"program_greeting"</span><span class="p">)</span>
-</pre></div>
-
-<h5>
-<a name="strings-with-variables" class="anchor" href="#strings-with-variables"><span class="octicon octicon-link"></span></a>Strings with variables</h5>
-
-<p>You can have variables in your string using <a href="http://golang.org/pkg/text/template/">text/template</a> syntax.</p>
-
-<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"Hello {{.Person}}"</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
-    <span class="s">"Person"</span><span class="p">:</span> <span class="s">"Bob"</span><span class="p">,</span>
-<span class="p">})</span>
-</pre></div>
-
-<h5>
-<a name="plural-strings" class="anchor" href="#plural-strings"><span class="octicon octicon-link"></span></a>Plural strings</h5>
-
-<p>Each language handles pluralization differently. A few examples:</p>
-
-<ul>
-<li>English treats one as singular and all other numbers as plural (e.g. 0 cats, 1 cat, 2 cats).</li>
-<li>French treats zero as singular.</li>
-<li>Japan has a single plural form for all numbers.</li>
-<li>Arabic has six different plural forms!</li>
-</ul><p>The translation function handles <a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">all of this logic</a> for you.</p>
-
-<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"You have {{.Count}} unread emails"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="nx">T</span><span class="p">(</span><span class="s">"I am {{.Count}} meters tall."</span><span class="p">,</span> <span class="s">"1.7"</span><span class="p">)</span>
-</pre></div>
-
-<p>With variables:</p>
-
-<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread emails"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
-    <span class="s">"Person"</span><span class="p">:</span> <span class="s">"Bob"</span><span class="p">,</span>
-<span class="p">})</span>
-</pre></div>
-
-<p>Sentences with multiple plural components can be supported with nesting.</p>
-
-<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"{{.Person}} has {{.Count}} unread emails in the past {{.Timeframe}}."</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
-    <span class="s">"Person"</span><span class="p">:</span>    <span class="s">"Bob"</span><span class="p">,</span>
-    <span class="s">"Timeframe"</span><span class="p">:</span> <span class="nx">T</span><span class="p">(</span><span class="s">"{{.Count}} days"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-<span class="p">})</span>
-</pre></div>
-
-<p>A complete example is <a href="https://github.com/nicksnyder/go-i18n/blob/master/i18n/example_test.go">here</a>.</p>
-
-<h5>
-<a name="strings-in-templates" class="anchor" href="#strings-in-templates"><span class="octicon octicon-link"></span></a>Strings in templates</h5>
-
-<p>You can call the <code>.Funcs()</code> method on a <a href="http://golang.org/pkg/text/template/#Template.Funcs">text/template</a> or <a href="http://golang.org/pkg/html/template/#Template.Funcs">html/template</a> to register the translation function for usage inside of that template.</p>
-
-<p>A complete example is <a href="https://github.com/nicksnyder/go-i18n/blob/master/i18n/exampletemplate_test.go">here</a>.</p>
+<p>The i18n package provides runtime APIs for fetching translated strings.</p>
 
 <h2>
-<a name="goi18n-command" class="anchor" href="#goi18n-command"><span class="octicon octicon-link"></span></a>goi18n command</h2>
+<a name="command-goi18n-" class="anchor" href="#command-goi18n-"><span class="octicon octicon-link"></span></a>Command goi18n <a href="http://godoc.org/github.com/nicksnyder/go-i18n/goi18n"><img src="http://godoc.org/github.com/nicksnyder/go-i18n?status.png" alt="GoDoc"></a>
+</h2>
 
 <p>The goi18n command provides functionality for managing the translation process.</p>
 
@@ -248,6 +159,7 @@ goi18n -help
 
 <ul>
 <li>Arabic (<code>ar</code>)</li>
+<li>Bulgarian (<code>bg</code>)</li>
 <li>Catalan (<code>ca</code>)</li>
 <li>Chinese (simplified and traditional) (<code>zh</code>)</li>
 <li>Czech (<code>cs</code>)</li>
@@ -256,41 +168,47 @@ goi18n -help
 <li>English (<code>en</code>)</li>
 <li>French (<code>fr</code>)</li>
 <li>German (<code>de</code>)</li>
+<li>Icelandic (<code>is</code>)</li>
 <li>Italian (<code>it</code>)</li>
 <li>Japanese (<code>ja</code>)</li>
+<li>Lithuanian (<code>lt</code>)</li>
 <li>Portuguese (<code>pt</code>)</li>
 <li>Portuguese (Brazilian) (<code>pt-BR</code>)</li>
 <li>Spanish (<code>es</code>)</li>
-</ul><p>More languages are straightforward to add:</p>
+<li>Swedish (<code>sv</code>)</li>
+</ul><h2>
+<a name="adding-new-languages" class="anchor" href="#adding-new-languages"><span class="octicon octicon-link"></span></a>Adding new languages</h2>
+
+<p>It is easy to add support for additional languages:</p>
 
 <ol>
 <li>Lookup the language's <a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">CLDR plural rules</a>.</li>
 <li>
-<p>Add the language to <a href="https://github.com/nicksnyder/go-i18n/blob/master/i18n/language/language.go">language.go</a>:</p>
+<p>Add the language to <a href="https://github.com/nicksnyder/go-i18n/blob/master/i18n/language/pluralspec.go">pluralspec.go</a>:</p>
 
-<div class="highlight highlight-go"><pre><span class="kd">var</span> <span class="nx">languages</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">Language</span><span class="p">{</span>
+<div class="highlight highlight-go"><pre><span class="kd">var</span> <span class="nx">pluralSpecs</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">PluralSpec</span><span class="p">{</span>
     <span class="c1">// ...</span>
-    <span class="s">"en"</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">Language</span><span class="p">{</span>
-        <span class="nx">ID</span><span class="p">:</span>               <span class="s">"en"</span><span class="p">,</span>
-        <span class="nx">Name</span><span class="p">:</span>             <span class="s">"English"</span><span class="p">,</span>
-        <span class="nx">PluralCategories</span><span class="p">:</span> <span class="nx">newSet</span><span class="p">(</span><span class="nx">plural</span><span class="p">.</span><span class="nx">One</span><span class="p">,</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">Other</span><span class="p">),</span>
-        <span class="nx">PluralFunc</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ops</span> <span class="o">*</span><span class="nx">plural</span><span class="p">.</span><span class="nx">Operands</span><span class="p">)</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">Category</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="nx">ops</span><span class="p">.</span><span class="nx">I</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">ops</span><span class="p">.</span><span class="nx">V</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">One</span>
-            <span class="p">}</span>
-            <span class="k">return</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">Other</span>
-        <span class="p">},</span>
-    <span class="p">},</span>
+            <span class="c1">// English</span>
+            <span class="s">"en"</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">PluralSpec</span><span class="p">{</span>
+                <span class="nx">Plurals</span><span class="p">:</span> <span class="nx">newPluralSet</span><span class="p">(</span><span class="nx">One</span><span class="p">,</span> <span class="nx">Other</span><span class="p">),</span>
+                <span class="nx">PluralFunc</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ops</span> <span class="o">*</span><span class="nx">operands</span><span class="p">)</span> <span class="nx">Plural</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="nx">ops</span><span class="p">.</span><span class="nx">I</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">ops</span><span class="p">.</span><span class="nx">V</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">One</span>
+                    <span class="p">}</span>
+                    <span class="k">return</span> <span class="nx">Other</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
     <span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></div>
 </li>
-<li><p>Add a test to <a href="https://github.com/nicksnyder/go-i18n/blob/master/i18n/language/language_test.go">language_test.go</a></p></li>
+<li><p>Add a test to <a href="https://github.com/nicksnyder/go-i18n/blob/master/i18n/language/pluralspec_test.go">pluralspec_test.go</a></p></li>
+<li>Update this README with the new language.</li>
 <li>Submit a pull request!</li>
 </ol><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>go-i18n is available under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</p>
+<p>go-i18n is available under the MIT license. See the <a href="https://github.com/nicksnyder/go-i18n/blob/master/LICENSE">LICENSE</a> file for more info.</p>
       </section>
     </div>
 
