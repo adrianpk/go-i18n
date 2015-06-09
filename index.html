@@ -1,38 +1,26 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="go-i18n : Translate your Go program into multiple languages with templates and CLDR plural support." />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>go-i18n</title>
+    <meta charset="UTF-8">
+    <title>go-i18n by nicksnyder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">go-i18n</h1>
+      <h2 class="project-tagline">Translate your Go program into multiple languages with templates and CLDR plural support.</h2>
+      <a href="https://github.com/nicksnyder/go-i18n" class="btn">View on GitHub</a>
+      <a href="https://github.com/nicksnyder/go-i18n/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nicksnyder/go-i18n/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/nicksnyder/go-i18n">View on GitHub</a>
-
-          <h1 id="project_title">go-i18n</h1>
-          <h2 id="project_tagline">Translate your Go program into multiple languages with templates and CLDR plural support.</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/nicksnyder/go-i18n/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/nicksnyder/go-i18n/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="go-i18n-" class="anchor" href="#go-i18n-"><span class="octicon octicon-link"></span></a>go-i18n <a href="http://travis-ci.org/nicksnyder/go-i18n"><img src="https://secure.travis-ci.org/nicksnyder/go-i18n.png?branch=master" alt="Build Status"></a>
+    <section class="main-content">
+      <h1>
+<a id="go-i18n-" class="anchor" href="#go-i18n-" aria-hidden="true"><span class="octicon octicon-link"></span></a>go-i18n <a href="http://travis-ci.org/nicksnyder/go-i18n"><img src="https://secure.travis-ci.org/nicksnyder/go-i18n.png?branch=master" alt="Build Status"></a>
 </h1>
 
 <p>go-i18n is a Go <a href="#i18n-package">package</a> and a <a href="#goi18n-command">command</a> that can be used to translate Go programs into multiple languages.</p>
@@ -43,20 +31,22 @@
 <li>Translation files are simple JSON.</li>
 <li>
 <a href="http://godoc.org/github.com/nicksnyder/go-i18n">Documented</a> and <a href="https://travis-ci.org/nicksnyder/go-i18n">tested</a>!</li>
-</ul><h2>
-<a name="package-i18n-" class="anchor" href="#package-i18n-"><span class="octicon octicon-link"></span></a>Package i18n <a href="http://godoc.org/github.com/nicksnyder/go-i18n/i18n"><img src="http://godoc.org/github.com/nicksnyder/go-i18n?status.png" alt="GoDoc"></a>
+</ul>
+
+<h2>
+<a id="package-i18n-" class="anchor" href="#package-i18n-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Package i18n <a href="http://godoc.org/github.com/nicksnyder/go-i18n/i18n"><img src="http://godoc.org/github.com/nicksnyder/go-i18n?status.png" alt="GoDoc"></a>
 </h2>
 
 <p>The i18n package provides runtime APIs for fetching translated strings.</p>
 
 <h2>
-<a name="command-goi18n-" class="anchor" href="#command-goi18n-"><span class="octicon octicon-link"></span></a>Command goi18n <a href="http://godoc.org/github.com/nicksnyder/go-i18n/goi18n"><img src="http://godoc.org/github.com/nicksnyder/go-i18n?status.png" alt="GoDoc"></a>
+<a id="command-goi18n-" class="anchor" href="#command-goi18n-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command goi18n <a href="http://godoc.org/github.com/nicksnyder/go-i18n/goi18n"><img src="http://godoc.org/github.com/nicksnyder/go-i18n?status.png" alt="GoDoc"></a>
 </h2>
 
 <p>The goi18n command provides functionality for managing the translation process.</p>
 
 <h3>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
 
 <p>Make sure you have <a href="http://golang.org/doc/code.html#GOPATH">setup GOPATH</a>.</p>
 
@@ -65,7 +55,7 @@ goi18n -help
 </code></pre>
 
 <h3>
-<a name="workflow" class="anchor" href="#workflow"><span class="octicon octicon-link"></span></a>Workflow</h3>
+<a id="workflow" class="anchor" href="#workflow" aria-hidden="true"><span class="octicon octicon-link"></span></a>Workflow</h3>
 
 <p>A typical workflow looks like this:</p>
 
@@ -73,19 +63,17 @@ goi18n -help
 <li>
 <p>Add a new string to your source code.</p>
 
-<div class="highlight highlight-go"><pre><span class="nx">T</span><span class="p">(</span><span class="s">"settings_title"</span><span class="p">)</span>
-</pre></div>
+<div class="highlight highlight-go"><pre><span class="pl-c1">T</span>(<span class="pl-s"><span class="pl-pds">"</span>settings_title<span class="pl-pds">"</span></span>)</pre></div>
 </li>
 <li>
 <p>Add the string to en-US.all.json</p>
 
-<div class="highlight highlight-json"><pre><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"settings_title"</span><span class="p">,</span>
-    <span class="nt">"translation"</span><span class="p">:</span> <span class="s2">"Settings"</span>
-  <span class="p">}</span>
-<span class="p">]</span>
-</pre></div>
+<div class="highlight highlight-json"><pre>[
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>settings_title<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Settings<span class="pl-pds">"</span></span>
+  }
+]</pre></div>
 </li>
 <li>
 <p>Run goi18n</p>
@@ -97,68 +85,69 @@ goi18n -help
 <li>
 <p>Run goi18n again to merge the translations</p>
 
-<div class="highlight highlight-sh"><pre>goi18n path/to/*.all.json path/to/*.untranslated.json
-</pre></div>
+<div class="highlight highlight-sh"><pre>goi18n path/to/<span class="pl-k">*</span>.all.json path/to/<span class="pl-k">*</span>.untranslated.json</pre></div>
 </li>
-</ol><h2>
-<a name="translation-files" class="anchor" href="#translation-files"><span class="octicon octicon-link"></span></a>Translation files</h2>
+</ol>
+
+<h2>
+<a id="translation-files" class="anchor" href="#translation-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Translation files</h2>
 
 <p>A translation file stores translated and untranslated strings.</p>
 
 <p>Example:</p>
 
-<div class="highlight highlight-json"><pre><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"d_days"</span><span class="p">,</span>
-    <span class="nt">"translation"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"one"</span><span class="p">:</span> <span class="s2">"{{.Count}} day"</span><span class="p">,</span>
-      <span class="nt">"other"</span><span class="p">:</span> <span class="s2">"{{.Count}} days"</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"my_height_in_meters"</span><span class="p">,</span>
-    <span class="nt">"translation"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"one"</span><span class="p">:</span> <span class="s2">"I am {{.Count}} meter tall."</span><span class="p">,</span>
-      <span class="nt">"other"</span><span class="p">:</span> <span class="s2">"I am {{.Count}} meters tall."</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"person_greeting"</span><span class="p">,</span>
-    <span class="nt">"translation"</span><span class="p">:</span> <span class="s2">"Hello {{.Person}}"</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"person_unread_email_count"</span><span class="p">,</span>
-    <span class="nt">"translation"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"one"</span><span class="p">:</span> <span class="s2">"{{.Person}} has {{.Count}} unread email."</span><span class="p">,</span>
-      <span class="nt">"other"</span><span class="p">:</span> <span class="s2">"{{.Person}} has {{.Count}} unread emails."</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"person_unread_email_count_timeframe"</span><span class="p">,</span>
-    <span class="nt">"translation"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"one"</span><span class="p">:</span> <span class="s2">"{{.Person}} has {{.Count}} unread email in the past {{.Timeframe}}."</span><span class="p">,</span>
-      <span class="nt">"other"</span><span class="p">:</span> <span class="s2">"{{.Person}} has {{.Count}} unread emails in the past {{.Timeframe}}."</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"program_greeting"</span><span class="p">,</span>
-    <span class="nt">"translation"</span><span class="p">:</span> <span class="s2">"Hello world"</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">"id"</span><span class="p">:</span> <span class="s2">"your_unread_email_count"</span><span class="p">,</span>
-    <span class="nt">"translation"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"one"</span><span class="p">:</span> <span class="s2">"You have {{.Count}} unread email."</span><span class="p">,</span>
-      <span class="nt">"other"</span><span class="p">:</span> <span class="s2">"You have {{.Count}} unread emails."</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">]</span>
-</pre></div>
+<div class="highlight highlight-json"><pre>[
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>d_days<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>one<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>{{.Count}} day<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>other<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>{{.Count}} days<span class="pl-pds">"</span></span>
+    }
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>my_height_in_meters<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>one<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>I am {{.Count}} meter tall.<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>other<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>I am {{.Count}} meters tall.<span class="pl-pds">"</span></span>
+    }
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>person_greeting<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Hello {{.Person}}<span class="pl-pds">"</span></span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>person_unread_email_count<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>one<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>{{.Person}} has {{.Count}} unread email.<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>other<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>{{.Person}} has {{.Count}} unread emails.<span class="pl-pds">"</span></span>
+    }
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>person_unread_email_count_timeframe<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>one<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>{{.Person}} has {{.Count}} unread email in the past {{.Timeframe}}.<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>other<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>{{.Person}} has {{.Count}} unread emails in the past {{.Timeframe}}.<span class="pl-pds">"</span></span>
+    }
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>program_greeting<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Hello world<span class="pl-pds">"</span></span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>your_unread_email_count<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>one<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>You have {{.Count}} unread email.<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>other<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>You have {{.Count}} unread emails.<span class="pl-pds">"</span></span>
+    }
+  }
+]</pre></div>
 
 <h2>
-<a name="supported-languages" class="anchor" href="#supported-languages"><span class="octicon octicon-link"></span></a>Supported languages</h2>
+<a id="supported-languages" class="anchor" href="#supported-languages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported languages</h2>
 
 <ul>
 <li>Arabic (<code>ar</code>)</li>
+<li>Belarusian (<code>be</code>)</li>
 <li>Bulgarian (<code>bg</code>)</li>
 <li>Catalan (<code>ca</code>)</li>
 <li>Chinese (simplified and traditional) (<code>zh</code>)</li>
@@ -169,58 +158,66 @@ goi18n -help
 <li>French (<code>fr</code>)</li>
 <li>German (<code>de</code>)</li>
 <li>Icelandic (<code>is</code>)</li>
+<li>Indonesian (<code>id</code>)</li>
 <li>Italian (<code>it</code>)</li>
+<li>Korean (<code>ko</code>)</li>
 <li>Japanese (<code>ja</code>)</li>
 <li>Lithuanian (<code>lt</code>)</li>
+<li>Malay (<code>ms</code>)</li>
+<li>Polish (<code>pl</code>)</li>
 <li>Portuguese (<code>pt</code>)</li>
 <li>Portuguese (Brazilian) (<code>pt-BR</code>)</li>
+<li>Russian (<code>ru</code>)</li>
 <li>Spanish (<code>es</code>)</li>
 <li>Swedish (<code>sv</code>)</li>
-</ul><h2>
-<a name="adding-new-languages" class="anchor" href="#adding-new-languages"><span class="octicon octicon-link"></span></a>Adding new languages</h2>
+<li>Turkish (<code>tr</code>)</li>
+<li>Ukrainian (<code>uk</code>)</li>
+</ul>
+
+<h2>
+<a id="adding-new-languages" class="anchor" href="#adding-new-languages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding new languages</h2>
 
 <p>It is easy to add support for additional languages:</p>
 
 <ol>
 <li>Lookup the language's <a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">CLDR plural rules</a>.</li>
 <li>
-<p>Add the language to <a href="https://github.com/nicksnyder/go-i18n/blob/master/i18n/language/pluralspec.go">pluralspec.go</a>:</p>
+<p>Add the language to <a href="i18n/language/pluralspec.go">pluralspec.go</a>:</p>
 
-<div class="highlight highlight-go"><pre><span class="kd">var</span> <span class="nx">pluralSpecs</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">PluralSpec</span><span class="p">{</span>
-    <span class="c1">// ...</span>
-            <span class="c1">// English</span>
-            <span class="s">"en"</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">PluralSpec</span><span class="p">{</span>
-                <span class="nx">Plurals</span><span class="p">:</span> <span class="nx">newPluralSet</span><span class="p">(</span><span class="nx">One</span><span class="p">,</span> <span class="nx">Other</span><span class="p">),</span>
-                <span class="nx">PluralFunc</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ops</span> <span class="o">*</span><span class="nx">operands</span><span class="p">)</span> <span class="nx">Plural</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="nx">ops</span><span class="p">.</span><span class="nx">I</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">ops</span><span class="p">.</span><span class="nx">V</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-                        <span class="k">return</span> <span class="nx">One</span>
-                    <span class="p">}</span>
-                    <span class="k">return</span> <span class="nx">Other</span>
-                <span class="p">},</span>
-            <span class="p">},</span>
-    <span class="c1">// ...</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight highlight-go"><pre><span class="pl-k">var</span> <span class="pl-smi">pluralSpecs</span> = <span class="pl-k">map</span>[<span class="pl-k">string</span>]*PluralSpec{
+    <span class="pl-c">// ...</span>
+            <span class="pl-c">// English</span>
+            <span class="pl-s"><span class="pl-pds">"</span>en<span class="pl-pds">"</span></span>: &amp;PluralSpec{
+                Plurals: <span class="pl-c1">newPluralSet</span>(One, Other),
+                PluralFunc: <span class="pl-c1">func</span>(ops *operands) Plural {
+                    <span class="pl-k">if</span> ops.<span class="pl-smi">I</span> == <span class="pl-c1">1</span> &amp;&amp; ops.<span class="pl-smi">V</span> == <span class="pl-c1">0</span> {
+                        <span class="pl-k">return</span> One
+                    }
+                    <span class="pl-k">return</span> Other
+                },
+            },
+    <span class="pl-c">// ...</span>
+}</pre></div>
 </li>
-<li><p>Add a test to <a href="https://github.com/nicksnyder/go-i18n/blob/master/i18n/language/pluralspec_test.go">pluralspec_test.go</a></p></li>
+<li><p>Add a test to <a href="i18n/language/pluralspec_test.go">pluralspec_test.go</a></p></li>
 <li>Update this README with the new language.</li>
 <li>Submit a pull request!</li>
-</ol><h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+</ol>
 
-<p>go-i18n is available under the MIT license. See the <a href="https://github.com/nicksnyder/go-i18n/blob/master/LICENSE">LICENSE</a> file for more info.</p>
-      </section>
-    </div>
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">go-i18n maintained by <a href="https://github.com/nicksnyder">nicksnyder</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+<p>go-i18n is available under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/nicksnyder/go-i18n">go-i18n</a> is maintained by <a href="https://github.com/nicksnyder">nicksnyder</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-              <script type="text/javascript">
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -231,6 +228,6 @@ goi18n -help
             } catch(err) {}
           </script>
 
-
   </body>
 </html>
+
