@@ -5,7 +5,7 @@
     <title>go-i18n by nicksnyder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
@@ -23,10 +23,16 @@
 <a id="go-i18n-" class="anchor" href="#go-i18n-" aria-hidden="true"><span class="octicon octicon-link"></span></a>go-i18n <a href="http://travis-ci.org/nicksnyder/go-i18n"><img src="https://secure.travis-ci.org/nicksnyder/go-i18n.png?branch=master" alt="Build Status"></a>
 </h1>
 
-<p>go-i18n is a Go <a href="#i18n-package">package</a> and a <a href="#goi18n-command">command</a> that can be used to translate Go programs into multiple languages.</p>
+<p>go-i18n is a Go <a href="#i18n-package">package</a> and a <a href="#goi18n-command">command</a> that helps you translate Go programs into multiple languages.</p>
 
 <ul>
-<li>Supports pluralized strings using <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">CLDR plural rules</a>.</li>
+<li>Supports <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">pluralized strings</a> for all 200+ languages in the <a href="http://www.unicode.org/cldr/charts/28/supplemental/language_plural_rules.html">Unicode Common Locale Data Repository (CLDR)</a>.
+
+<ul>
+<li> Code and tests are <a href="https://github.com/nicksnyder/go-i18n/tree/master/i18n/language/codegen">automatically generated</a> from <a href="http://cldr.unicode.org/index/downloads">CLDR data</a>
+</li>
+</ul>
+</li>
 <li>Supports strings with named variables using <a href="http://golang.org/pkg/text/template/">text/template</a> syntax.</li>
 <li>Translation files are simple JSON.</li>
 <li>
@@ -63,12 +69,12 @@ goi18n -help
 <li>
 <p>Add a new string to your source code.</p>
 
-<div class="highlight highlight-go"><pre><span class="pl-c1">T</span>(<span class="pl-s"><span class="pl-pds">"</span>settings_title<span class="pl-pds">"</span></span>)</pre></div>
+<div class="highlight highlight-source-go"><pre><span class="pl-c1">T</span>(<span class="pl-s"><span class="pl-pds">"</span>settings_title<span class="pl-pds">"</span></span>)</pre></div>
 </li>
 <li>
 <p>Add the string to en-US.all.json</p>
 
-<div class="highlight highlight-json"><pre>[
+<div class="highlight highlight-source-json"><pre>[
   {
     <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>settings_title<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Settings<span class="pl-pds">"</span></span>
@@ -85,7 +91,7 @@ goi18n -help
 <li>
 <p>Run goi18n again to merge the translations</p>
 
-<div class="highlight highlight-sh"><pre>goi18n path/to/<span class="pl-k">*</span>.all.json path/to/<span class="pl-k">*</span>.untranslated.json</pre></div>
+<div class="highlight highlight-source-shell"><pre>goi18n path/to/<span class="pl-k">*</span>.all.json path/to/<span class="pl-k">*</span>.untranslated.json</pre></div>
 </li>
 </ol>
 
@@ -96,7 +102,7 @@ goi18n -help
 
 <p>Example:</p>
 
-<div class="highlight highlight-json"><pre>[
+<div class="highlight highlight-source-json"><pre>[
   {
     <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>d_days<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>translation<span class="pl-pds">"</span></span>: {
@@ -143,66 +149,9 @@ goi18n -help
 ]</pre></div>
 
 <h2>
-<a id="supported-languages" class="anchor" href="#supported-languages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported languages</h2>
+<a id="contributions" class="anchor" href="#contributions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributions</h2>
 
-<ul>
-<li>Arabic (<code>ar</code>)</li>
-<li>Belarusian (<code>be</code>)</li>
-<li>Bulgarian (<code>bg</code>)</li>
-<li>Catalan (<code>ca</code>)</li>
-<li>Chinese (simplified and traditional) (<code>zh</code>)</li>
-<li>Czech (<code>cs</code>)</li>
-<li>Danish (<code>da</code>)</li>
-<li>Dutch (<code>nl</code>)</li>
-<li>English (<code>en</code>)</li>
-<li>French (<code>fr</code>)</li>
-<li>German (<code>de</code>)</li>
-<li>Icelandic (<code>is</code>)</li>
-<li>Indonesian (<code>id</code>)</li>
-<li>Italian (<code>it</code>)</li>
-<li>Korean (<code>ko</code>)</li>
-<li>Japanese (<code>ja</code>)</li>
-<li>Lithuanian (<code>lt</code>)</li>
-<li>Malay (<code>ms</code>)</li>
-<li>Polish (<code>pl</code>)</li>
-<li>Portuguese (<code>pt</code>)</li>
-<li>Portuguese (Brazilian) (<code>pt-BR</code>)</li>
-<li>Russian (<code>ru</code>)</li>
-<li>Spanish (<code>es</code>)</li>
-<li>Swedish (<code>sv</code>)</li>
-<li>Turkish (<code>tr</code>)</li>
-<li>Ukrainian (<code>uk</code>)</li>
-</ul>
-
-<h2>
-<a id="adding-new-languages" class="anchor" href="#adding-new-languages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding new languages</h2>
-
-<p>It is easy to add support for additional languages:</p>
-
-<ol>
-<li>Lookup the language's <a href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">CLDR plural rules</a>.</li>
-<li>
-<p>Add the language to <a href="i18n/language/pluralspec.go">pluralspec.go</a>:</p>
-
-<div class="highlight highlight-go"><pre><span class="pl-k">var</span> <span class="pl-smi">pluralSpecs</span> = <span class="pl-k">map</span>[<span class="pl-k">string</span>]*PluralSpec{
-    <span class="pl-c">// ...</span>
-            <span class="pl-c">// English</span>
-            <span class="pl-s"><span class="pl-pds">"</span>en<span class="pl-pds">"</span></span>: &amp;PluralSpec{
-                Plurals: <span class="pl-c1">newPluralSet</span>(One, Other),
-                PluralFunc: <span class="pl-c1">func</span>(ops *operands) Plural {
-                    <span class="pl-k">if</span> ops.<span class="pl-smi">I</span> == <span class="pl-c1">1</span> &amp;&amp; ops.<span class="pl-smi">V</span> == <span class="pl-c1">0</span> {
-                        <span class="pl-k">return</span> One
-                    }
-                    <span class="pl-k">return</span> Other
-                },
-            },
-    <span class="pl-c">// ...</span>
-}</pre></div>
-</li>
-<li><p>Add a test to <a href="i18n/language/pluralspec_test.go">pluralspec_test.go</a></p></li>
-<li>Update this README with the new language.</li>
-<li>Submit a pull request!</li>
-</ol>
+<p>If you discover a problem or have an idea to improve the library, please don't hesitate to open an issue so we can discuss.</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
@@ -230,4 +179,3 @@ goi18n -help
 
   </body>
 </html>
-
