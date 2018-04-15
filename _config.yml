@@ -1,0 +1,8 @@
+title: go-i18n
+description: Translate your Go program into multiple languages with templates and CLDR plural support.
+google_analytics: UA-47572933-1
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
