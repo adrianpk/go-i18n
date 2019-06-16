@@ -57,21 +57,12 @@ func TestLocalizer_Localize(t *testing.T) {
 			name:            "empty translation without fallback",
 			defaultLanguage: language.English,
 			messages: map[language.Tag][]*Message{
-				language.Spanish: {{ID: "HelloWorld"}},
-			},
-			acceptLangs: []string{"es"},
-			conf:        &LocalizeConfig{MessageID: "HelloWorld"},
-			expectedErr: &MessageNotFoundErr{messageID: "HelloWorld"},
-		},
-		{
-			name:            "empty translation with fallback",
-			defaultLanguage: language.English,
-			messages: map[language.Tag][]*Message{
 				language.English: {{ID: "HelloWorld", Other: "Hello World!"}},
 				language.Spanish: {{ID: "HelloWorld"}},
 			},
 			acceptLangs:       []string{"es"},
 			conf:              &LocalizeConfig{MessageID: "HelloWorld"},
+			expectedErr:       &MessageNotFoundErr{messageID: "HelloWorld", tag: language.Spanish},
 			expectedLocalized: "Hello World!",
 		},
 		{
@@ -511,7 +502,7 @@ func TestLocalizer_Localize(t *testing.T) {
 			expectedLocalized: "Nick has 2.5 cats",
 		},
 		{
-			name:            "test slow path",
+			name:            "no fallback",
 			defaultLanguage: language.Spanish,
 			messages: map[language.Tag][]*Message{
 				language.English: {{
@@ -527,10 +518,10 @@ func TestLocalizer_Localize(t *testing.T) {
 			conf: &LocalizeConfig{
 				MessageID: "Hello",
 			},
-			expectedLocalized: "Hello!",
+			expectedErr: &MessageNotFoundErr{tag: language.Und, messageID: "Hello"},
 		},
 		{
-			name:            "test slow path default message",
+			name:            "fallback default message",
 			defaultLanguage: language.Spanish,
 			messages: map[language.Tag][]*Message{
 				language.English: {{
@@ -550,9 +541,10 @@ func TestLocalizer_Localize(t *testing.T) {
 				},
 			},
 			expectedLocalized: "Hola!",
+			expectedErr:       &MessageNotFoundErr{tag: language.AmericanEnglish, messageID: "Hello"},
 		},
 		{
-			name:            "test slow path no message",
+			name:            "no fallback default message",
 			defaultLanguage: language.Spanish,
 			messages: map[language.Tag][]*Message{
 				language.English: {{
@@ -568,7 +560,7 @@ func TestLocalizer_Localize(t *testing.T) {
 			conf: &LocalizeConfig{
 				MessageID: "Hello",
 			},
-			expectedErr: &MessageNotFoundErr{messageID: "Hello"},
+			expectedErr: &MessageNotFoundErr{tag: language.Und, messageID: "Hello"},
 		},
 	}
 
