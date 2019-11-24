@@ -59,6 +59,12 @@ func (b *Bundle) LoadMessageFile(path string) (*MessageFile, error) {
 	return b.ParseMessageFileBytes(buf, path)
 }
 
+// LoadMessageFileData loads the bytes from path
+// and then calls ParseMessageFileBytes.
+func (b *Bundle) LoadMessageFileData(fileData []byte, path string) (*MessageFile, error) {
+	return b.ParseMessageFileBytes(fileData, path)
+}
+
 // MustLoadMessageFile is similar to LoadTranslationFile
 // except it panics if an error happens.
 func (b *Bundle) MustLoadMessageFile(path string) {
